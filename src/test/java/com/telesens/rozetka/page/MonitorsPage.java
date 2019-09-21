@@ -57,7 +57,6 @@ public class MonitorsPage extends BasePage {
                         .map( Integer::parseInt )
                         .collect( Collectors.toList());
         return prices;
-
     }
 
     public MonitorsPage sortingCheck() {

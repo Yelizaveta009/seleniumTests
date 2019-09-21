@@ -1,25 +1,11 @@
 package com.telesens.rozetka;
 
 import com.telesens.framework.test.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-
 import java.io.FileReader;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
-
 import static com.telesens.rozetka.page.MainPage.startFromMain;
 
 public class RozetkaTests extends BaseTest {
@@ -59,6 +45,7 @@ public class RozetkaTests extends BaseTest {
                 .filterMonitorsByPrice()
                 .filteringCheckByPrice();
     }
+
     @Test
     public void testSortForMonitors() {
         startFromMain(driver, baseUrl)
@@ -66,6 +53,7 @@ public class RozetkaTests extends BaseTest {
                 .sortedMonitorsAscending()
                 .sortingCheck();
     }
+
     @Test
     public void testFilterForShirts() {
         startFromMain( driver, baseUrl )

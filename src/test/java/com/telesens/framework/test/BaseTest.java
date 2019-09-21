@@ -5,13 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.*;
-
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private static final Logger LOG = LogManager.getLogger( BaseTest.class );
-
     protected EventFiringWebDriver driver;
 
     @Parameters({"browser"})
@@ -25,6 +23,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait( 10, TimeUnit.SECONDS );
         driver.manage().window().maximize();
     }
+
     @BeforeMethod (alwaysRun = true)
     public void logTestStart(Method method) {
 

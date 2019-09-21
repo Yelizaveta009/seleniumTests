@@ -10,14 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
 public class BasePage {
     private static final Logger LOG = LogManager.getLogger( BaseTest.class );
-
     protected WebDriver driver;
 
     protected BasePage(WebDriver driver) {
@@ -70,26 +68,27 @@ public class BasePage {
         }
     }
 
-        public void waitingUntilElementToBeClickable(WebElement element) {
-            new WebDriverWait( driver, Duration.ofSeconds( 10 ) )
+    public void waitingUntilElementToBeClickable(WebElement element) {
+            new WebDriverWait( driver, Duration.ofSeconds(10))
                     .until( ExpectedConditions.elementToBeClickable( element ) );
-        }
+    }
 
-        public void waitingUntilPresenceOfElementLocated(String locatorXpath) {
-            new WebDriverWait( driver, Duration.ofSeconds( 10 ) )
+    public void waitingUntilPresenceOfElementLocated(String locatorXpath) {
+            new WebDriverWait( driver, Duration.ofSeconds(10))
                     .until( ExpectedConditions.presenceOfElementLocated(
                             By.xpath( locatorXpath )
-                    ) );
-        }
+                    ));
+    }
 
-        public void pointAndClick(WebElement point, WebElement click) {
-            Actions actions = new Actions( driver );
-            actions.moveToElement( point )
+    public void pointAndClick(WebElement point, WebElement click) {
+            Actions actions = new Actions(driver);
+            actions.moveToElement(point)
                     .build()
                     .perform();
             click.click();
-        }
-        public void scrollDownAbit(){
+    }
+
+    public void scrollDownAbit(){
             JavascriptExecutor jse = (JavascriptExecutor)driver;
             jse.executeScript("scroll(0, 250);");
     }

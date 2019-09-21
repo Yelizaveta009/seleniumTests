@@ -15,7 +15,6 @@ public class AuthTests extends BaseTest {
     private static final String DEFAULT_PATH = "src/main/resources/automationpractice.properties";
     private String baseUrl;
 
-
     @BeforeClass(alwaysRun = true)
     public void setUp() throws Exception {
         String automationPracticePath = System.getProperty( "automationpractice" );
@@ -25,7 +24,6 @@ public class AuthTests extends BaseTest {
         Properties prop = new Properties();
         prop.load( new FileReader( automationPracticePath ) );
         baseUrl = prop.getProperty( "base.url" );
-
     }
 
     @Test(dataProvider = "authErrorMessageProvider")
