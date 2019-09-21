@@ -42,7 +42,6 @@ public class RozetkaTests extends BaseTest {
         password = prop.getProperty("password");
     }
 
-
     @Test(dataProvider = "loginProvider")
     public void testLogin(String login,String password) {
         startFromMain( driver, baseUrl )
@@ -54,25 +53,32 @@ public class RozetkaTests extends BaseTest {
     }
 
     @Test
-    public void testSort() {
+    public void testFilterForMonitors() {
+        startFromMain( driver, baseUrl )
+                .goToMonitorsPage()
+                .filterMonitorsByPrice()
+                .filteringCheckByPrice();
+    }
+    @Test
+    public void testSortForMonitors() {
         startFromMain(driver, baseUrl)
                 .goToMonitorsPage()
                 .sortedMonitorsAscending()
                 .sortingCheck();
     }
-
     @Test
-    public void testFilter() {
+    public void testFilterForShirts() {
         startFromMain( driver, baseUrl )
-                .goToMonitorsPage()
-                .filterMonitorsByPrice()
-                .filteringCheck();
+                .goToShirtsPage()
+                .filterByOrsay()
+                .filteringCheckByBrand();
     }
-        @DataProvider(name = "loginProvider")
-        public Object[][] loginProvider() {
-            return new Object[][]{
-                    {login,password},
-            };
+
+    @DataProvider(name = "loginProvider")
+    public Object[][] loginProvider() {
+        return new Object[][]{
+                {login,password},
+        };
 
     }
 }

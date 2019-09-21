@@ -1,4 +1,5 @@
 package com.telesens.rozetka.page;
+
 import com.telesens.framework.page.BasePage;
 import com.telesens.rozetka.RozetkaTests;
 import org.apache.logging.log4j.LogManager;
@@ -8,11 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +17,7 @@ import java.util.stream.Collectors;
 public class MonitorsPage extends BasePage {
     private static final Logger LOG = LogManager.getLogger( RozetkaTests.class.getName());
 
-    @FindBy(css = "#sort_view > a")
+    @FindBy(xpath = "//*[@id='sort_view']/a")
     private WebElement sortView;
 
     @FindBy(xpath = "//*[@id='sort_view']/div/ul/li/a[contains(text(), 'от дешевых')]")
@@ -39,6 +35,8 @@ public class MonitorsPage extends BasePage {
     @FindBy(xpath = "//*[@id='reset_filterprice']/a")
     private WebElement infoAboutFiltering;
 
+    @FindBy(xpath = ".//*[@id=\"reset_filterprice\"]/a")
+    private WebElement referencePointForFilteringCheck;
 
     public MonitorsPage(WebDriver driver) {
         super( driver );
@@ -63,13 +61,7 @@ public class MonitorsPage extends BasePage {
     }
 
     public MonitorsPage sortingCheck() {
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        waitingUntilPresenceOfElementLocated( "//div[contains(@class, 'sort-popup') and contains(@style, 'visibility: hidden')]" );
 
         List<Integer> pricesSortedActual = getListWithPrices();
         LOG.info( "Sorted prices: "+ pricesSortedActual );
@@ -83,6 +75,8 @@ public class MonitorsPage extends BasePage {
     }
 
     public MonitorsPage filterMonitorsByPrice(){
+        scrollDownAbit();
+
         Actions actions = new Actions( driver );
 
         int xLeft = (int) (Math.random() * 125);
@@ -99,12 +93,9 @@ public class MonitorsPage extends BasePage {
         submitPrice.click();
         return this;
     }
-    public MonitorsPage filteringCheck() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+    public MonitorsPage filteringCheckByPrice() {
+        waitingUntilElementToBeClickable(referencePointForFilteringCheck);
 
         List<Integer> pricesFilterActual = getListWithPrices();
         Collections.sort(pricesFilterActual);
@@ -126,6 +117,7 @@ public class MonitorsPage extends BasePage {
         assertTrueLog(last <= priceMaxExtended);
 
         LOG.info("Items have been filtered from " + priceMinExtended + " UAH. to " + priceMaxExtended + " UAH. ");
+        LOG.info( "Sort by price was successful" );
 
         return this;
     }

@@ -5,6 +5,7 @@ import com.telesens.framework.test.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 public class BasePage {
     private static final Logger LOG = LogManager.getLogger( BaseTest.class );
@@ -55,7 +57,6 @@ public class BasePage {
         }
     }
 
-
     private void makeScreenshotAssert(WebDriver driver) {
         File tmp = ((TakesScreenshot) driver).getScreenshotAs( OutputType.FILE );
         String screenName = "screen_" + System.currentTimeMillis() + ".png";
@@ -68,4 +69,29 @@ public class BasePage {
                     tmp, screen, exc );
         }
     }
+
+        public void waitingUntilElementToBeClickable(WebElement element) {
+            new WebDriverWait( driver, Duration.ofSeconds( 10 ) )
+                    .until( ExpectedConditions.elementToBeClickable( element ) );
+        }
+
+        public void waitingUntilPresenceOfElementLocated(String locatorXpath) {
+            new WebDriverWait( driver, Duration.ofSeconds( 10 ) )
+                    .until( ExpectedConditions.presenceOfElementLocated(
+                            By.xpath( locatorXpath )
+                    ) );
+        }
+
+        public void pointAndClick(WebElement point, WebElement click) {
+            Actions actions = new Actions( driver );
+            actions.moveToElement( point )
+                    .build()
+                    .perform();
+            click.click();
+        }
+        public void scrollDownAbit(){
+            JavascriptExecutor jse = (JavascriptExecutor)driver;
+            jse.executeScript("scroll(0, 250);");
+    }
 }
+

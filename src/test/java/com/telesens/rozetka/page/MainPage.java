@@ -25,17 +25,26 @@ public class MainPage extends BasePage {
     @FindBy(partialLinkText = "Выход")
     private WebElement exitButton;
 
-    @FindBy(xpath = "/html/body/app-root/div/div[1]/app-rz-main-page/div/aside/main-page-sidebar/sidebar-fat-menu/div/ul/li[1]")
-    private WebElement mainMenuCss;
+    @FindBy(xpath = "//ul[@class='menu-categories menu-categories_type_main']//li[1]")
+    private WebElement laptopsAndTechnology;
+
+    @FindBy(xpath = "//ul[@class='menu-categories menu-categories_type_main']//li[9]")
+    private WebElement clothesFootwearDecoration;
 
     @FindBy(partialLinkText = "Мониторы")
     private WebElement monitors;
+
+    @FindBy(partialLinkText = "Блузки")
+    private WebElement shirts;
 
     @FindBy(xpath = "//p[@class='error-message_color_red']")
     private WebElement errorMessageWrongPassword;
 
     @FindBy(xpath = "//span[@class='auth-modal__form-email']")
     private WebElement errorMessageWrongLogin;
+
+    @FindBy(css = "body > div > div > div:nth-child(3) > div > button > span")
+    private WebElement buttonToCollapse;
 
 
     public MainPage(WebDriver driver) {
@@ -69,22 +78,22 @@ public class MainPage extends BasePage {
     }
 
     public MainPage signOut() {
-        Actions actions = new Actions( driver );
-        actions.moveToElement( userName )
-                .build()
-                .perform();
-
-        exitButton.click();
+        pointAndClick( userName,exitButton );
         return this;
     }
 
     public MonitorsPage goToMonitorsPage() {
-        Actions actions = new Actions( driver );
-        actions.moveToElement( mainMenuCss )
-                .build()
-                .perform();
-        monitors.click();
+        pointAndClick(laptopsAndTechnology,monitors );
+
         return new MonitorsPage( driver );
+    }
+
+    public ShirtsPage goToShirtsPage() {
+        scrollDownAbit();
+
+        pointAndClick(clothesFootwearDecoration,shirts);
+
+        return new ShirtsPage( driver );
     }
 }
 
