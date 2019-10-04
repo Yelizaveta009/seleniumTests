@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<!--<suite name="selenium">-->
-<!--    <test name="rozetka">-->
-<!--        <packages>-->
-<!--            <package name="com.telesens.rozetka.*" />-->
-<!--        </packages>-->
-<!--    </test>-->
-<!--</suite>-->
-
-<suite name="selenium">
+<suite name="selenide">
 <test name="ChromeTest">
     <parameter name="browser" value="chrome" />
     <classes>
-        <class name="com.telesens.rozetka.RozetkaTests" />
+        <class name="com.telesens.rozetka.ddt.RozetkaTests" />
+        <class name="com.telesens.rozetka.bdd.RozetkaAuthTests" />
     </classes>
 </test>
     </suite>

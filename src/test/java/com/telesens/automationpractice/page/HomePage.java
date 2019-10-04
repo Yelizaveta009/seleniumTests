@@ -1,30 +1,18 @@
 package com.telesens.automationpractice.page;
 
-import com.telesens.framework.page.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage {
+import static com.codeborne.selenide.Selenide.page;
+
+public class HomePage  {
     @FindBy(linkText = "Sign in")
-    private WebElement linkSignIn;
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-    }
-
-    public HomePage fromHome() {
-        return this;
-    }
-
-    public static  HomePage startFromHome(WebDriver driver, String baseUrl) {
-        driver.get(baseUrl);
-        return new HomePage(driver);
-    }
+    private SelenideElement signInLink;
 
     public AuthPage clickSignIn() {
-        linkSignIn.click();
-        return new AuthPage(driver);
+        signInLink.click();
+        return page(AuthPage.class);
     }
 }
+
+

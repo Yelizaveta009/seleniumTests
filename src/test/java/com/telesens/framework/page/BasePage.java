@@ -7,12 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
+
 
 public class BasePage {
     private static final Logger LOG = LogManager.getLogger( BaseTest.class );
@@ -66,18 +64,6 @@ public class BasePage {
             LOG.error( "Error copying screenshot from '{}' to '{}'. Details: {}",
                     tmp, screen, exc );
         }
-    }
-
-    public void waitingUntilElementToBeClickable(WebElement element) {
-            new WebDriverWait( driver, Duration.ofSeconds(10))
-                    .until( ExpectedConditions.elementToBeClickable( element ) );
-    }
-
-    public void waitingUntilPresenceOfElementLocated(String locatorXpath) {
-            new WebDriverWait( driver, Duration.ofSeconds(10))
-                    .until( ExpectedConditions.presenceOfElementLocated(
-                            By.xpath( locatorXpath )
-                    ));
     }
 
     public void pointAndClick(WebElement point, WebElement click) {

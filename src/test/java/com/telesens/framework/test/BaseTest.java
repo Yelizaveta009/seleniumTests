@@ -35,6 +35,7 @@ public class BaseTest {
 
         LOG.info( "Finish test {}", method.getName() );
     }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();

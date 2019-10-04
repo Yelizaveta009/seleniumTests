@@ -1,7 +1,7 @@
-package com.telesens.rozetka.page;
+package com.telesens.rozetka.ddt.page;
 
 import com.telesens.framework.page.BasePage;
-import com.telesens.rozetka.RozetkaTests;
+import com.telesens.rozetka.ddt.RozetkaTests;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -60,7 +60,7 @@ public class MonitorsPage extends BasePage {
     }
 
     public MonitorsPage sortingCheck() {
-        waitingUntilPresenceOfElementLocated( "//div[contains(@class, 'sort-popup') and contains(@style, 'visibility: hidden')]" );
+//        waitingUntilPresenceOfElementLocated( "//div[contains(@class, 'sort-popup') and contains(@style, 'visibility: hidden')]" );
 
         List<Integer> pricesSortedActual = getListWithPrices();
         LOG.info( "Sorted prices: "+ pricesSortedActual );
@@ -94,7 +94,7 @@ public class MonitorsPage extends BasePage {
     }
 
     public MonitorsPage filteringCheckByPrice() {
-        waitingUntilElementToBeClickable(referencePointForFilteringCheck);
+//        waitingUntilElementToBeClickable(referencePointForFilteringCheck);
 
         List<Integer> pricesFilterActual = getListWithPrices();
         Collections.sort(pricesFilterActual);

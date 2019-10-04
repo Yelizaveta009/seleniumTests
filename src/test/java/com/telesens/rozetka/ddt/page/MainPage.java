@@ -1,4 +1,4 @@
-package com.telesens.rozetka.page;
+package com.telesens.rozetka.ddt.page;
 
 import com.telesens.framework.page.BasePage;
 import org.openqa.selenium.WebDriver;

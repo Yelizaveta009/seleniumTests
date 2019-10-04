@@ -1,48 +1,34 @@
 package com.telesens.automationpractice.page;
 
-import com.telesens.framework.page.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AuthPage extends BasePage {
-    @FindBy(id = "email")
-    private WebElement emailField;
+import static com.codeborne.selenide.Selenide.page;
 
-    @FindBy(id = "passwd")
-    private WebElement passwField;
+public class AuthPage  {
+    @FindBy(id="email")
+    private SelenideElement loginField;
 
-    @FindBy(id ="SubmitLogin")
-    private WebElement submitButton;
+    @FindBy(id="passwd")
+    private SelenideElement passwordField;
 
-    @FindBy(xpath = "//*[@id='center_column']/div[1]/ol/li")
-    private WebElement errorMessageBlock;
+    @FindBy(id="SubmitLogin")
+    private SelenideElement submitButton;
 
-    public AuthPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
+    public AuthPage inputLogin(String login) {
+        loginField.setValue(login);
+        return page(AuthPage.class);
     }
 
-    public AuthPage enterEmail(String email) {
-        inputTextField(emailField, email);
-
-        return this;
+    public AuthPage inputPassword(String password) {
+        passwordField.setValue(password);
+        return page(AuthPage.class);
     }
 
-    public AuthPage enterPassword(String passw) {
-        inputTextField(passwField, passw);
-        return this;
-    }
-
-    public BasePage pressSubmit(){
+    public AccountPage submit() {
         submitButton.click();
-        return this;
-    }
-    public String getErrorMessage(){
-        return errorMessageBlock.getText();
-}
-    public String checkingAssertEquals(String actualError,String expectedError) {
-        assertEqualsLog( actualError, expectedError );
-        return String.valueOf( this );
+        return page(AccountPage.class);
     }
 }
+
