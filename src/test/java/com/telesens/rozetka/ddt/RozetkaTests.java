@@ -1,13 +1,16 @@
 package com.telesens.rozetka.ddt;
 
 import com.telesens.framework.test.BaseTest;
+import com.telesens.framework.test.TestListener;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import java.io.FileReader;
 import java.util.Properties;
 import static com.telesens.rozetka.ddt.page.MainPage.startFromMain;
 
+@Listeners(TestListener.class)
 public class RozetkaTests extends BaseTest {
     private static final String DEFAULT_PATH = "src/main/resources/rozetka.properties";
     private String baseUrl;

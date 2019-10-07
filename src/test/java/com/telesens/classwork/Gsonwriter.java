@@ -14,7 +14,6 @@ public class Gsonwriter {
     public static void main(String[] args) {
         List<Subscriber> subscribers = new ArrayList<>(  );
 
-
         Gson gson = new Gson();
         String json = gson.toJson(subscribers);
 

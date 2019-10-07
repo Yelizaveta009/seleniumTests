@@ -1,6 +1,7 @@
 package com.telesens.automationpractice;
 
 import com.telesens.automationpractice.page.HomePage;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -31,6 +32,9 @@ public class AddAddressTests {
     }
 
     @Test(dataProvider = "authDataProvider")
+    @Description("Description: test that checks for address creation ")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Story("Супер пупер тест")
     public void loginTestUsingPages(String login, String password, String address, String city,
                                     String idStage, String postCode, String phone, String alias) {
 

@@ -1,13 +1,21 @@
 package com.telesens.automationpractice;
 
 import com.telesens.automationpractice.page.HomePage;
+import com.telesens.framework.test.BaseTest;
+import com.telesens.framework.test.TestListener;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class AuthTests {
+@Epic("Regression tests")
+@Feature("Auth tests")
+@Listeners(TestListener.class)
+public class AuthTests extends BaseTest {
 
     private String baseUrl;
     private int timeout;
